@@ -1,0 +1,20 @@
+<div class="col-md-12">
+    <div class="card text-white bg-dark mt-3">
+        <div class="card-header">Pridėti užduotį</div>
+        <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Įveskite užduoties pavadinimą</label>
+                    <input type="text" class="form-control" (input)="activateButton()" [(ngModel)]="tN"  #taskName>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Įveskite užduoties aprašymą</label>
+                    <input type="text" class="form-control" (input)="activateButton()" [(ngModel)]="tD"  #taskDesc>
+                </div>
+                <button class="btn btn-success" [disabled]="inputsNotAvailable" (click)="postTask(tN, tD)">Pridėti užduotį</button>   <!-- "tN == '' || tD == '' || !tN || !tD" -->
+                
+        </div>
+    </div>
+    
+</div>
+
+

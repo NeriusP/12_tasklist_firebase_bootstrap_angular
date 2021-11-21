@@ -1,0 +1,50 @@
+<div class="col-md-12">
+    <div class="card text-white bg-dark mt-3">
+        <div class="card-header">Užduočių sąrašas</div>
+        <div class="card-body">
+            <ul class="list-group" >
+                <li class="list-group-item" *ngFor="let task of tasks">
+                    <div class="card" id={{task.id}}> 
+                        <!-- [ngClass]="{'text-white bg-success' : task.statusas == 'Atlikta'}" -->
+                        <h5 class="card-header">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-7 col-sm-6">
+                                    <b>{{task.pavadinimas}} 
+                                        <span class="badge bg-warning text-dark left" 
+                                            [ngClass]="{'bg-success text-white' : task.statusas == 'Atlikta', 'bg-warning text-dark' : task.statusas != 'Atlikta' }">
+                                            {{task.statusas}}
+                                        </span>
+                                    </b>
+                                </div>
+                                <div class="col-lg-4 col-md-5 col-sm-6">
+                                    <button class="btn btn-info float-end my-1" (click)="changeTaskStatus(status, task.id)">Patvirtinti</button>
+                                    <span class="float-end mr-3">
+                                        <select class="form-select my-1" #status>
+                                            <option disabled selected value="-1">Keisti statusą</option>
+                                            <option value="Laukiama">Laukiama</option>
+                                            <option value="Vykdoma">Vykdoma</option>
+                                            <option value="Atlikta">Atlikta</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                        </h5>
+                        <div class="card-body">
+                           <div class="row">
+                               <div class="col-md-10">
+                                   {{task.aprasymas}}
+                               </div>
+                               <div class="col-md-2">
+                                   <button class="btn btn-danger float-end" (click)="deleteTask(task.id)">Trinti</button>
+                               </div>
+                           </div>
+                        </div>
+
+                    </div>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+    <app-add-task (updateTasks)="onUpdate()"></app-add-task>
+</div>
